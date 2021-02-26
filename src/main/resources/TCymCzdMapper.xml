@@ -1,0 +1,822 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.springbatch.auto.TCymCzdMapper">
+
+    <resultMap type="com.example.springbatch.auto.TCymCzd" id="BaseResultMap">
+        <id property="id" column="ID" jdbcType="VARCHAR"/>
+        <result property="czdbm" column="CZDBM" jdbcType="VARCHAR"/>
+        <result property="cztms" column="CZTMS" jdbcType="VARCHAR"/>
+        <result property="czmc" column="CZMC" jdbcType="VARCHAR"/>
+        <result property="djbh" column="DJBH" jdbcType="VARCHAR"/>
+        <result property="jzxh" column="JZXH" jdbcType="VARCHAR"/>
+        <result property="shr" column="SHR" jdbcType="VARCHAR"/>
+        <result property="fhr" column="FHR" jdbcType="VARCHAR"/>
+        <result property="xx" column="XX" jdbcType="VARCHAR"/>
+        <result property="xl" column="XL" jdbcType="VARCHAR"/>
+        <result property="czdzt" column="CZDZT" jdbcType="VARCHAR"/>
+        <result property="czlx" column="CZLX" jdbcType="VARCHAR"/>
+        <result property="ddmlh" column="DDMLH" jdbcType="VARCHAR"/>
+        <result property="jszm" column="JSZM" jdbcType="VARCHAR"/>
+        <result property="dybj" column="DYBJ" jdbcType="VARCHAR"/>
+        <result property="ydhptmbh" column="YDHPTMBH" jdbcType="VARCHAR"/>
+        <result property="tmbh" column="TMBH" jdbcType="VARCHAR"/>
+        <result property="mwsmrqsj" column="MWSMRQSJ" jdbcType="TIMESTAMP"/>
+        <result property="jzbsmrqsj" column="JZBSMRQSJ" jdbcType="TIMESTAMP"/>
+        <result property="kzzt" column="KZZT" jdbcType="VARCHAR"/>
+        <result property="syry" column="SYRY" jdbcType="VARCHAR"/>
+        <result property="bych" column="BYCH" jdbcType="VARCHAR"/>
+        <result property="czjbrdm" column="CZJBRDM" jdbcType="VARCHAR"/>
+        <result property="czjbrxm" column="CZJBRXM" jdbcType="VARCHAR"/>
+        <result property="xtztsm" column="XTZTSM" jdbcType="VARCHAR"/>
+        <result property="sfhm" column="SFHM" jdbcType="VARCHAR"/>
+        <result property="jsnr" column="JSNR" jdbcType="VARCHAR"/>
+        <result property="lrrq" column="LRRQ" jdbcType="TIMESTAMP"/>
+        <result property="sfhz" column="SFHZ" jdbcType="VARCHAR"/>
+        <result property="hzrq" column="HZRQ" jdbcType="TIMESTAMP"/>
+        <result property="lastModifyName" column="LAST_MODIFY_NAME" jdbcType="VARCHAR"/>
+        <result property="lastModifyTime" column="LAST_MODIFY_TIME" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    
+	<!-- 非分页获取 -->
+	<select id="selectByExampleWithoutPage" resultMap="BaseResultMap">
+		<include refid="selectModel"></include>
+	</select>
+    <sql id="Example_Where_Clause" >
+        <where>
+          <foreach collection="oredCriteria" item="criteria" separator="or" >
+            <if test="criteria.valid" >
+              <trim prefix="(" suffix=")" prefixOverrides="and" >
+                <foreach collection="criteria.criteria" item="criterion" >
+                  <choose >
+                    <when test="criterion.noValue" >
+                      and ${criterion.condition}
+                    </when>
+                    <when test="criterion.singleValue" >
+                      and ${criterion.condition} #{criterion.value}
+                    </when>
+                    <when test="criterion.betweenValue" >
+                      and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                    </when>
+                    <when test="criterion.listValue" >
+                      and ${criterion.condition}
+                      <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                        #{listItem}
+                      </foreach>
+                    </when>
+                  </choose>
+                </foreach>
+              </trim>
+            </if>
+          </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+          <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+            <if test="criteria.valid" >
+              <trim prefix="(" suffix=")" prefixOverrides="and" >
+                <foreach collection="criteria.criteria" item="criterion" >
+                  <choose >
+                    <when test="criterion.noValue" >
+                      and ${criterion.condition}
+                    </when>
+                    <when test="criterion.singleValue" >
+                      and ${criterion.condition} #{criterion.value}
+                    </when>
+                    <when test="criterion.betweenValue" >
+                      and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                    </when>
+                    <when test="criterion.listValue" >
+                      and ${criterion.condition}
+                      <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                        #{listItem}
+                      </foreach>
+                    </when>
+                  </choose>
+               </foreach>
+             </trim>
+           </if>
+         </foreach>
+       </where>
+    </sql>
+    <sql id="Base_Column_List" >
+        ID, CZDBM, CZTMS, CZMC, DJBH, JZXH, SHR, FHR, XX, XL, CZDZT, CZLX, DDMLH, JSZM, DYBJ, YDHPTMBH, TMBH, MWSMRQSJ, JZBSMRQSJ, KZZT, SYRY, BYCH, CZJBRDM, CZJBRXM, XTZTSM, SFHM, JSNR, LRRQ, SFHZ, HZRQ, LAST_MODIFY_NAME, LAST_MODIFY_TIME        
+    </sql>
+    <sql id="selectModel">
+        SELECT 
+        <include refid="Base_Column_List"></include>
+        FROM PMIS.T_CYM_CZD
+        <where>
+            <if test="id != null and id != ''">
+                AND ID = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="czdbm != null and czdbm != ''">
+                AND CZDBM = #{czdbm,jdbcType=VARCHAR}
+            </if>
+            <if test="cztms != null and cztms != ''">
+                AND CZTMS = #{cztms,jdbcType=VARCHAR}
+            </if>
+            <if test="czmc != null and czmc != ''">
+                AND CZMC = #{czmc,jdbcType=VARCHAR}
+            </if>
+            <if test="djbh != null and djbh != ''">
+                AND DJBH = #{djbh,jdbcType=VARCHAR}
+            </if>
+            <if test="jzxh != null and jzxh != ''">
+                AND JZXH = #{jzxh,jdbcType=VARCHAR}
+            </if>
+            <if test="shr != null and shr != ''">
+                AND SHR = #{shr,jdbcType=VARCHAR}
+            </if>
+            <if test="fhr != null and fhr != ''">
+                AND FHR = #{fhr,jdbcType=VARCHAR}
+            </if>
+            <if test="xx != null and xx != ''">
+                AND XX = #{xx,jdbcType=VARCHAR}
+            </if>
+            <if test="xl != null and xl != ''">
+                AND XL = #{xl,jdbcType=VARCHAR}
+            </if>
+            <if test="czdzt != null and czdzt != ''">
+                AND CZDZT = #{czdzt,jdbcType=VARCHAR}
+            </if>
+            <if test="czlx != null and czlx != ''">
+                AND CZLX = #{czlx,jdbcType=VARCHAR}
+            </if>
+            <if test="ddmlh != null and ddmlh != ''">
+                AND DDMLH = #{ddmlh,jdbcType=VARCHAR}
+            </if>
+            <if test="jszm != null and jszm != ''">
+                AND JSZM = #{jszm,jdbcType=VARCHAR}
+            </if>
+            <if test="dybj != null and dybj != ''">
+                AND DYBJ = #{dybj,jdbcType=VARCHAR}
+            </if>
+            <if test="ydhptmbh != null and ydhptmbh != ''">
+                AND YDHPTMBH = #{ydhptmbh,jdbcType=VARCHAR}
+            </if>
+            <if test="tmbh != null and tmbh != ''">
+                AND TMBH = #{tmbh,jdbcType=VARCHAR}
+            </if>
+            <if test="mwsmrqsj != null">
+                AND MWSMRQSJ = #{mwsmrqsj,jdbcType=TIMESTAMP}
+            </if>
+            <if test="jzbsmrqsj != null">
+                AND JZBSMRQSJ = #{jzbsmrqsj,jdbcType=TIMESTAMP}
+            </if>
+            <if test="kzzt != null and kzzt != ''">
+                AND KZZT = #{kzzt,jdbcType=VARCHAR}
+            </if>
+            <if test="syry != null and syry != ''">
+                AND SYRY = #{syry,jdbcType=VARCHAR}
+            </if>
+            <if test="bych != null and bych != ''">
+                AND BYCH = #{bych,jdbcType=VARCHAR}
+            </if>
+            <if test="czjbrdm != null and czjbrdm != ''">
+                AND CZJBRDM = #{czjbrdm,jdbcType=VARCHAR}
+            </if>
+            <if test="czjbrxm != null and czjbrxm != ''">
+                AND CZJBRXM = #{czjbrxm,jdbcType=VARCHAR}
+            </if>
+            <if test="xtztsm != null and xtztsm != ''">
+                AND XTZTSM = #{xtztsm,jdbcType=VARCHAR}
+            </if>
+            <if test="sfhm != null and sfhm != ''">
+                AND SFHM = #{sfhm,jdbcType=VARCHAR}
+            </if>
+            <if test="jsnr != null and jsnr != ''">
+                AND JSNR = #{jsnr,jdbcType=VARCHAR}
+            </if>
+            <if test="lrrq != null">
+                AND LRRQ = #{lrrq,jdbcType=TIMESTAMP}
+            </if>
+            <if test="sfhz != null and sfhz != ''">
+                AND SFHZ = #{sfhz,jdbcType=VARCHAR}
+            </if>
+            <if test="hzrq != null">
+                AND HZRQ = #{hzrq,jdbcType=TIMESTAMP}
+            </if>
+            <if test="lastModifyName != null and lastModifyName != ''">
+                AND LAST_MODIFY_NAME = #{lastModifyName,jdbcType=VARCHAR}
+            </if>
+            <if test="lastModifyTime != null">
+                AND LAST_MODIFY_TIME = #{lastModifyTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.springbatch.auto.TCymCzdExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PMIS.T_CYM_CZD
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select 
+        *
+        from PMIS.T_CYM_CZD
+        where ID = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+        delete from PMIS.T_CYM_CZD
+        where ID = #{id,jdbcType=VARCHAR}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.example.springbatch.auto.TCymCzdExample" >
+        delete from PMIS.T_CYM_CZD
+        <if test="_parameter != null" >
+          <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.example.springbatch.auto.TCymCzd" >
+        <selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE">
+          SELECT SYS_GUID() FROM dual
+        </selectKey>
+        insert into PMIS.T_CYM_CZD(ID, CZDBM, CZTMS, CZMC, DJBH, JZXH, SHR, FHR, XX, XL, CZDZT, CZLX, DDMLH, JSZM, DYBJ, YDHPTMBH, TMBH, MWSMRQSJ, JZBSMRQSJ, KZZT, SYRY, BYCH, CZJBRDM, CZJBRXM, XTZTSM, SFHM, JSNR, LRRQ, SFHZ, HZRQ, LAST_MODIFY_NAME, LAST_MODIFY_TIME)
+            values (#{id,jdbcType=VARCHAR}, #{czdbm,jdbcType=VARCHAR}, #{cztms,jdbcType=VARCHAR}, #{czmc,jdbcType=VARCHAR}, #{djbh,jdbcType=VARCHAR}, #{jzxh,jdbcType=VARCHAR}, #{shr,jdbcType=VARCHAR}, #{fhr,jdbcType=VARCHAR}, #{xx,jdbcType=VARCHAR}, #{xl,jdbcType=VARCHAR}, #{czdzt,jdbcType=VARCHAR}, #{czlx,jdbcType=VARCHAR}, #{ddmlh,jdbcType=VARCHAR}, #{jszm,jdbcType=VARCHAR}, #{dybj,jdbcType=VARCHAR}, #{ydhptmbh,jdbcType=VARCHAR}, #{tmbh,jdbcType=VARCHAR}, #{mwsmrqsj,jdbcType=TIMESTAMP}, #{jzbsmrqsj,jdbcType=TIMESTAMP}, #{kzzt,jdbcType=VARCHAR}, #{syry,jdbcType=VARCHAR}, #{bych,jdbcType=VARCHAR}, #{czjbrdm,jdbcType=VARCHAR}, #{czjbrxm,jdbcType=VARCHAR}, #{xtztsm,jdbcType=VARCHAR}, #{sfhm,jdbcType=VARCHAR}, #{jsnr,jdbcType=VARCHAR}, #{lrrq,jdbcType=TIMESTAMP}, #{sfhz,jdbcType=VARCHAR}, #{hzrq,jdbcType=TIMESTAMP}, #{lastModifyName,jdbcType=VARCHAR}, #{lastModifyTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.example.springbatch.auto.TCymCzd" >
+        <selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE">
+          SELECT SYS_GUID() FROM dual
+        </selectKey>
+        insert into PMIS.T_CYM_CZD
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+        <if test="id != null">
+                ID,
+        </if>
+        <if test="czdbm != null">
+                CZDBM,
+        </if>
+        <if test="cztms != null">
+                CZTMS,
+        </if>
+        <if test="czmc != null">
+                CZMC,
+        </if>
+        <if test="djbh != null">
+                DJBH,
+        </if>
+        <if test="jzxh != null">
+                JZXH,
+        </if>
+        <if test="shr != null">
+                SHR,
+        </if>
+        <if test="fhr != null">
+                FHR,
+        </if>
+        <if test="xx != null">
+                XX,
+        </if>
+        <if test="xl != null">
+                XL,
+        </if>
+        <if test="czdzt != null">
+                CZDZT,
+        </if>
+        <if test="czlx != null">
+                CZLX,
+        </if>
+        <if test="ddmlh != null">
+                DDMLH,
+        </if>
+        <if test="jszm != null">
+                JSZM,
+        </if>
+        <if test="dybj != null">
+                DYBJ,
+        </if>
+        <if test="ydhptmbh != null">
+                YDHPTMBH,
+        </if>
+        <if test="tmbh != null">
+                TMBH,
+        </if>
+        <if test="mwsmrqsj != null">
+                MWSMRQSJ,
+        </if>
+        <if test="jzbsmrqsj != null">
+                JZBSMRQSJ,
+        </if>
+        <if test="kzzt != null">
+                KZZT,
+        </if>
+        <if test="syry != null">
+                SYRY,
+        </if>
+        <if test="bych != null">
+                BYCH,
+        </if>
+        <if test="czjbrdm != null">
+                CZJBRDM,
+        </if>
+        <if test="czjbrxm != null">
+                CZJBRXM,
+        </if>
+        <if test="xtztsm != null">
+                XTZTSM,
+        </if>
+        <if test="sfhm != null">
+                SFHM,
+        </if>
+        <if test="jsnr != null">
+                JSNR,
+        </if>
+        <if test="lrrq != null">
+                LRRQ,
+        </if>
+        <if test="sfhz != null">
+                SFHZ,
+        </if>
+        <if test="hzrq != null">
+                HZRQ,
+        </if>
+        <if test="lastModifyName != null">
+                LAST_MODIFY_NAME,
+        </if>
+        <if test="lastModifyTime != null">
+                LAST_MODIFY_TIME,
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="id != null">
+                    #{id},
+          </if>
+          <if test="czdbm != null">
+                    #{czdbm},
+          </if>
+          <if test="cztms != null">
+                    #{cztms},
+          </if>
+          <if test="czmc != null">
+                    #{czmc},
+          </if>
+          <if test="djbh != null">
+                    #{djbh},
+          </if>
+          <if test="jzxh != null">
+                    #{jzxh},
+          </if>
+          <if test="shr != null">
+                    #{shr},
+          </if>
+          <if test="fhr != null">
+                    #{fhr},
+          </if>
+          <if test="xx != null">
+                    #{xx},
+          </if>
+          <if test="xl != null">
+                    #{xl},
+          </if>
+          <if test="czdzt != null">
+                    #{czdzt},
+          </if>
+          <if test="czlx != null">
+                    #{czlx},
+          </if>
+          <if test="ddmlh != null">
+                    #{ddmlh},
+          </if>
+          <if test="jszm != null">
+                    #{jszm},
+          </if>
+          <if test="dybj != null">
+                    #{dybj},
+          </if>
+          <if test="ydhptmbh != null">
+                    #{ydhptmbh},
+          </if>
+          <if test="tmbh != null">
+                    #{tmbh},
+          </if>
+          <if test="mwsmrqsj != null">
+                    #{mwsmrqsj},
+          </if>
+          <if test="jzbsmrqsj != null">
+                    #{jzbsmrqsj},
+          </if>
+          <if test="kzzt != null">
+                    #{kzzt},
+          </if>
+          <if test="syry != null">
+                    #{syry},
+          </if>
+          <if test="bych != null">
+                    #{bych},
+          </if>
+          <if test="czjbrdm != null">
+                    #{czjbrdm},
+          </if>
+          <if test="czjbrxm != null">
+                    #{czjbrxm},
+          </if>
+          <if test="xtztsm != null">
+                    #{xtztsm},
+          </if>
+          <if test="sfhm != null">
+                    #{sfhm},
+          </if>
+          <if test="jsnr != null">
+                    #{jsnr},
+          </if>
+          <if test="lrrq != null">
+                    #{lrrq},
+          </if>
+          <if test="sfhz != null">
+                    #{sfhz},
+          </if>
+          <if test="hzrq != null">
+                    #{hzrq},
+          </if>
+          <if test="lastModifyName != null">
+                    #{lastModifyName},
+          </if>
+          <if test="lastModifyTime != null">
+                    #{lastModifyTime},
+          </if>
+        </trim>
+    </insert>
+    <!-- 批量插入-->
+    <insert id="insertByBatch" parameterType="java.util.List" >
+        insert into PMIS.T_CYM_CZD(ID, CZDBM, CZTMS, CZMC, DJBH, JZXH, SHR, FHR, XX, XL, CZDZT, CZLX, DDMLH, JSZM, DYBJ, YDHPTMBH, TMBH, MWSMRQSJ, JZBSMRQSJ, KZZT, SYRY, BYCH, CZJBRDM, CZJBRXM, XTZTSM, SFHM, JSNR, LRRQ, SFHZ, HZRQ, LAST_MODIFY_NAME, LAST_MODIFY_TIME)
+            <trim prefix="(" suffix=")" >
+                <foreach collection="list" item="item" index="" separator="union all">
+                    select 
+                    <trim suffixOverrides="," >
+                        SYS_GUID(),
+                        #{item.czdbm,jdbcType=VARCHAR},
+                        #{item.cztms,jdbcType=VARCHAR},
+                        #{item.czmc,jdbcType=VARCHAR},
+                        #{item.djbh,jdbcType=VARCHAR},
+                        #{item.jzxh,jdbcType=VARCHAR},
+                        #{item.shr,jdbcType=VARCHAR},
+                        #{item.fhr,jdbcType=VARCHAR},
+                        #{item.xx,jdbcType=VARCHAR},
+                        #{item.xl,jdbcType=VARCHAR},
+                        #{item.czdzt,jdbcType=VARCHAR},
+                        #{item.czlx,jdbcType=VARCHAR},
+                        #{item.ddmlh,jdbcType=VARCHAR},
+                        #{item.jszm,jdbcType=VARCHAR},
+                        #{item.dybj,jdbcType=VARCHAR},
+                        #{item.ydhptmbh,jdbcType=VARCHAR},
+                        #{item.tmbh,jdbcType=VARCHAR},
+                        #{item.mwsmrqsj,jdbcType=TIMESTAMP},
+                        #{item.jzbsmrqsj,jdbcType=TIMESTAMP},
+                        #{item.kzzt,jdbcType=VARCHAR},
+                        #{item.syry,jdbcType=VARCHAR},
+                        #{item.bych,jdbcType=VARCHAR},
+                        #{item.czjbrdm,jdbcType=VARCHAR},
+                        #{item.czjbrxm,jdbcType=VARCHAR},
+                        #{item.xtztsm,jdbcType=VARCHAR},
+                        #{item.sfhm,jdbcType=VARCHAR},
+                        #{item.jsnr,jdbcType=VARCHAR},
+                        #{item.lrrq,jdbcType=TIMESTAMP},
+                        #{item.sfhz,jdbcType=VARCHAR},
+                        #{item.hzrq,jdbcType=TIMESTAMP},
+                        #{item.lastModifyName,jdbcType=VARCHAR},
+                        #{item.lastModifyTime,jdbcType=TIMESTAMP}
+                    </trim>
+                    from dual
+                </foreach>
+            </trim>
+    </insert>
+    <!-- 批量更新 -->
+    <update id="updateByBatch" parameterType="java.util.List" >
+		<foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update PMIS.T_CYM_CZD 
+            <set>
+                CZDBM =#{item.czdbm,jdbcType=VARCHAR},
+                CZTMS =#{item.cztms,jdbcType=VARCHAR},
+                CZMC =#{item.czmc,jdbcType=VARCHAR},
+                DJBH =#{item.djbh,jdbcType=VARCHAR},
+                JZXH =#{item.jzxh,jdbcType=VARCHAR},
+                SHR =#{item.shr,jdbcType=VARCHAR},
+                FHR =#{item.fhr,jdbcType=VARCHAR},
+                XX =#{item.xx,jdbcType=VARCHAR},
+                XL =#{item.xl,jdbcType=VARCHAR},
+                CZDZT =#{item.czdzt,jdbcType=VARCHAR},
+                CZLX =#{item.czlx,jdbcType=VARCHAR},
+                DDMLH =#{item.ddmlh,jdbcType=VARCHAR},
+                JSZM =#{item.jszm,jdbcType=VARCHAR},
+                DYBJ =#{item.dybj,jdbcType=VARCHAR},
+                YDHPTMBH =#{item.ydhptmbh,jdbcType=VARCHAR},
+                TMBH =#{item.tmbh,jdbcType=VARCHAR},
+                MWSMRQSJ =#{item.mwsmrqsj,jdbcType=TIMESTAMP},
+                JZBSMRQSJ =#{item.jzbsmrqsj,jdbcType=TIMESTAMP},
+                KZZT =#{item.kzzt,jdbcType=VARCHAR},
+                SYRY =#{item.syry,jdbcType=VARCHAR},
+                BYCH =#{item.bych,jdbcType=VARCHAR},
+                CZJBRDM =#{item.czjbrdm,jdbcType=VARCHAR},
+                CZJBRXM =#{item.czjbrxm,jdbcType=VARCHAR},
+                XTZTSM =#{item.xtztsm,jdbcType=VARCHAR},
+                SFHM =#{item.sfhm,jdbcType=VARCHAR},
+                JSNR =#{item.jsnr,jdbcType=VARCHAR},
+                LRRQ =#{item.lrrq,jdbcType=TIMESTAMP},
+                SFHZ =#{item.sfhz,jdbcType=VARCHAR},
+                HZRQ =#{item.hzrq,jdbcType=TIMESTAMP},
+                LAST_MODIFY_NAME =#{item.lastModifyName,jdbcType=VARCHAR},
+                LAST_MODIFY_TIME =#{item.lastModifyTime,jdbcType=TIMESTAMP}            
+            </set>
+                <where>
+                ID = #{item.id,jdbcType=VARCHAR}
+                </where>
+		</foreach>
+    </update>
+    <select id="countByExample" parameterType="com.example.springbatch.auto.TCymCzdExample" resultType="java.lang.Integer" >
+        select count(*) from PMIS.T_CYM_CZD
+        <if test="_parameter != null" >
+          <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map" >
+            update PMIS.T_CYM_CZD
+        <set>
+            <if test="record.id != null">
+                ID = #{record.id,jdbcType=VARCHAR},
+            </if>
+            <if test="record.czdbm != null">
+                CZDBM = #{record.czdbm,jdbcType=VARCHAR},
+            </if>
+            <if test="record.cztms != null">
+                CZTMS = #{record.cztms,jdbcType=VARCHAR},
+            </if>
+            <if test="record.czmc != null">
+                CZMC = #{record.czmc,jdbcType=VARCHAR},
+            </if>
+            <if test="record.djbh != null">
+                DJBH = #{record.djbh,jdbcType=VARCHAR},
+            </if>
+            <if test="record.jzxh != null">
+                JZXH = #{record.jzxh,jdbcType=VARCHAR},
+            </if>
+            <if test="record.shr != null">
+                SHR = #{record.shr,jdbcType=VARCHAR},
+            </if>
+            <if test="record.fhr != null">
+                FHR = #{record.fhr,jdbcType=VARCHAR},
+            </if>
+            <if test="record.xx != null">
+                XX = #{record.xx,jdbcType=VARCHAR},
+            </if>
+            <if test="record.xl != null">
+                XL = #{record.xl,jdbcType=VARCHAR},
+            </if>
+            <if test="record.czdzt != null">
+                CZDZT = #{record.czdzt,jdbcType=VARCHAR},
+            </if>
+            <if test="record.czlx != null">
+                CZLX = #{record.czlx,jdbcType=VARCHAR},
+            </if>
+            <if test="record.ddmlh != null">
+                DDMLH = #{record.ddmlh,jdbcType=VARCHAR},
+            </if>
+            <if test="record.jszm != null">
+                JSZM = #{record.jszm,jdbcType=VARCHAR},
+            </if>
+            <if test="record.dybj != null">
+                DYBJ = #{record.dybj,jdbcType=VARCHAR},
+            </if>
+            <if test="record.ydhptmbh != null">
+                YDHPTMBH = #{record.ydhptmbh,jdbcType=VARCHAR},
+            </if>
+            <if test="record.tmbh != null">
+                TMBH = #{record.tmbh,jdbcType=VARCHAR},
+            </if>
+            <if test="record.mwsmrqsj != null">
+                MWSMRQSJ = #{record.mwsmrqsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.jzbsmrqsj != null">
+                JZBSMRQSJ = #{record.jzbsmrqsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.kzzt != null">
+                KZZT = #{record.kzzt,jdbcType=VARCHAR},
+            </if>
+            <if test="record.syry != null">
+                SYRY = #{record.syry,jdbcType=VARCHAR},
+            </if>
+            <if test="record.bych != null">
+                BYCH = #{record.bych,jdbcType=VARCHAR},
+            </if>
+            <if test="record.czjbrdm != null">
+                CZJBRDM = #{record.czjbrdm,jdbcType=VARCHAR},
+            </if>
+            <if test="record.czjbrxm != null">
+                CZJBRXM = #{record.czjbrxm,jdbcType=VARCHAR},
+            </if>
+            <if test="record.xtztsm != null">
+                XTZTSM = #{record.xtztsm,jdbcType=VARCHAR},
+            </if>
+            <if test="record.sfhm != null">
+                SFHM = #{record.sfhm,jdbcType=VARCHAR},
+            </if>
+            <if test="record.jsnr != null">
+                JSNR = #{record.jsnr,jdbcType=VARCHAR},
+            </if>
+            <if test="record.lrrq != null">
+                LRRQ = #{record.lrrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.sfhz != null">
+                SFHZ = #{record.sfhz,jdbcType=VARCHAR},
+            </if>
+            <if test="record.hzrq != null">
+                HZRQ = #{record.hzrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.lastModifyName != null">
+                LAST_MODIFY_NAME = #{record.lastModifyName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.lastModifyTime != null">
+                LAST_MODIFY_TIME = #{record.lastModifyTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+          <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map" >
+            update PMIS.T_CYM_CZD
+            <set>
+                ID = #{record.id,jdbcType=VARCHAR},
+                CZDBM = #{record.czdbm,jdbcType=VARCHAR},
+                CZTMS = #{record.cztms,jdbcType=VARCHAR},
+                CZMC = #{record.czmc,jdbcType=VARCHAR},
+                DJBH = #{record.djbh,jdbcType=VARCHAR},
+                JZXH = #{record.jzxh,jdbcType=VARCHAR},
+                SHR = #{record.shr,jdbcType=VARCHAR},
+                FHR = #{record.fhr,jdbcType=VARCHAR},
+                XX = #{record.xx,jdbcType=VARCHAR},
+                XL = #{record.xl,jdbcType=VARCHAR},
+                CZDZT = #{record.czdzt,jdbcType=VARCHAR},
+                CZLX = #{record.czlx,jdbcType=VARCHAR},
+                DDMLH = #{record.ddmlh,jdbcType=VARCHAR},
+                JSZM = #{record.jszm,jdbcType=VARCHAR},
+                DYBJ = #{record.dybj,jdbcType=VARCHAR},
+                YDHPTMBH = #{record.ydhptmbh,jdbcType=VARCHAR},
+                TMBH = #{record.tmbh,jdbcType=VARCHAR},
+                MWSMRQSJ = #{record.mwsmrqsj,jdbcType=TIMESTAMP},
+                JZBSMRQSJ = #{record.jzbsmrqsj,jdbcType=TIMESTAMP},
+                KZZT = #{record.kzzt,jdbcType=VARCHAR},
+                SYRY = #{record.syry,jdbcType=VARCHAR},
+                BYCH = #{record.bych,jdbcType=VARCHAR},
+                CZJBRDM = #{record.czjbrdm,jdbcType=VARCHAR},
+                CZJBRXM = #{record.czjbrxm,jdbcType=VARCHAR},
+                XTZTSM = #{record.xtztsm,jdbcType=VARCHAR},
+                SFHM = #{record.sfhm,jdbcType=VARCHAR},
+                JSNR = #{record.jsnr,jdbcType=VARCHAR},
+                LRRQ = #{record.lrrq,jdbcType=TIMESTAMP},
+                SFHZ = #{record.sfhz,jdbcType=VARCHAR},
+                HZRQ = #{record.hzrq,jdbcType=TIMESTAMP},
+                LAST_MODIFY_NAME = #{record.lastModifyName,jdbcType=VARCHAR},
+                LAST_MODIFY_TIME = #{record.lastModifyTime,jdbcType=TIMESTAMP},
+            </set>
+        <if test="_parameter != null" >
+          <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.springbatch.auto.TCymCzd" >
+        update PMIS.T_CYM_CZD
+        <set>
+            <if test="id != null">
+                ID = #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="czdbm != null">
+                CZDBM = #{czdbm,jdbcType=VARCHAR},
+            </if>
+            <if test="cztms != null">
+                CZTMS = #{cztms,jdbcType=VARCHAR},
+            </if>
+            <if test="czmc != null">
+                CZMC = #{czmc,jdbcType=VARCHAR},
+            </if>
+            <if test="djbh != null">
+                DJBH = #{djbh,jdbcType=VARCHAR},
+            </if>
+            <if test="jzxh != null">
+                JZXH = #{jzxh,jdbcType=VARCHAR},
+            </if>
+            <if test="shr != null">
+                SHR = #{shr,jdbcType=VARCHAR},
+            </if>
+            <if test="fhr != null">
+                FHR = #{fhr,jdbcType=VARCHAR},
+            </if>
+            <if test="xx != null">
+                XX = #{xx,jdbcType=VARCHAR},
+            </if>
+            <if test="xl != null">
+                XL = #{xl,jdbcType=VARCHAR},
+            </if>
+            <if test="czdzt != null">
+                CZDZT = #{czdzt,jdbcType=VARCHAR},
+            </if>
+            <if test="czlx != null">
+                CZLX = #{czlx,jdbcType=VARCHAR},
+            </if>
+            <if test="ddmlh != null">
+                DDMLH = #{ddmlh,jdbcType=VARCHAR},
+            </if>
+            <if test="jszm != null">
+                JSZM = #{jszm,jdbcType=VARCHAR},
+            </if>
+            <if test="dybj != null">
+                DYBJ = #{dybj,jdbcType=VARCHAR},
+            </if>
+            <if test="ydhptmbh != null">
+                YDHPTMBH = #{ydhptmbh,jdbcType=VARCHAR},
+            </if>
+            <if test="tmbh != null">
+                TMBH = #{tmbh,jdbcType=VARCHAR},
+            </if>
+            <if test="mwsmrqsj != null">
+                MWSMRQSJ = #{mwsmrqsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="jzbsmrqsj != null">
+                JZBSMRQSJ = #{jzbsmrqsj,jdbcType=TIMESTAMP},
+            </if>
+            <if test="kzzt != null">
+                KZZT = #{kzzt,jdbcType=VARCHAR},
+            </if>
+            <if test="syry != null">
+                SYRY = #{syry,jdbcType=VARCHAR},
+            </if>
+            <if test="bych != null">
+                BYCH = #{bych,jdbcType=VARCHAR},
+            </if>
+            <if test="czjbrdm != null">
+                CZJBRDM = #{czjbrdm,jdbcType=VARCHAR},
+            </if>
+            <if test="czjbrxm != null">
+                CZJBRXM = #{czjbrxm,jdbcType=VARCHAR},
+            </if>
+            <if test="xtztsm != null">
+                XTZTSM = #{xtztsm,jdbcType=VARCHAR},
+            </if>
+            <if test="sfhm != null">
+                SFHM = #{sfhm,jdbcType=VARCHAR},
+            </if>
+            <if test="jsnr != null">
+                JSNR = #{jsnr,jdbcType=VARCHAR},
+            </if>
+            <if test="lrrq != null">
+                LRRQ = #{lrrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sfhz != null">
+                SFHZ = #{sfhz,jdbcType=VARCHAR},
+            </if>
+            <if test="hzrq != null">
+                HZRQ = #{hzrq,jdbcType=TIMESTAMP},
+            </if>
+            <if test="lastModifyName != null">
+                LAST_MODIFY_NAME = #{lastModifyName,jdbcType=VARCHAR},
+            </if>
+            <if test="lastModifyTime != null">
+                LAST_MODIFY_TIME = #{lastModifyTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.example.springbatch.auto.TCymCzd" >
+        update PMIS.T_CYM_CZD
+        <set>
+            CZDBM = #{czdbm,jdbcType=VARCHAR},
+            CZTMS = #{cztms,jdbcType=VARCHAR},
+            CZMC = #{czmc,jdbcType=VARCHAR},
+            DJBH = #{djbh,jdbcType=VARCHAR},
+            JZXH = #{jzxh,jdbcType=VARCHAR},
+            SHR = #{shr,jdbcType=VARCHAR},
+            FHR = #{fhr,jdbcType=VARCHAR},
+            XX = #{xx,jdbcType=VARCHAR},
+            XL = #{xl,jdbcType=VARCHAR},
+            CZDZT = #{czdzt,jdbcType=VARCHAR},
+            CZLX = #{czlx,jdbcType=VARCHAR},
+            DDMLH = #{ddmlh,jdbcType=VARCHAR},
+            JSZM = #{jszm,jdbcType=VARCHAR},
+            DYBJ = #{dybj,jdbcType=VARCHAR},
+            YDHPTMBH = #{ydhptmbh,jdbcType=VARCHAR},
+            TMBH = #{tmbh,jdbcType=VARCHAR},
+            MWSMRQSJ = #{mwsmrqsj,jdbcType=TIMESTAMP},
+            JZBSMRQSJ = #{jzbsmrqsj,jdbcType=TIMESTAMP},
+            KZZT = #{kzzt,jdbcType=VARCHAR},
+            SYRY = #{syry,jdbcType=VARCHAR},
+            BYCH = #{bych,jdbcType=VARCHAR},
+            CZJBRDM = #{czjbrdm,jdbcType=VARCHAR},
+            CZJBRXM = #{czjbrxm,jdbcType=VARCHAR},
+            XTZTSM = #{xtztsm,jdbcType=VARCHAR},
+            SFHM = #{sfhm,jdbcType=VARCHAR},
+            JSNR = #{jsnr,jdbcType=VARCHAR},
+            LRRQ = #{lrrq,jdbcType=TIMESTAMP},
+            SFHZ = #{sfhz,jdbcType=VARCHAR},
+            HZRQ = #{hzrq,jdbcType=TIMESTAMP},
+            LAST_MODIFY_NAME = #{lastModifyName,jdbcType=VARCHAR},
+            LAST_MODIFY_TIME = #{lastModifyTime,jdbcType=TIMESTAMP}        
+        where ID = #{id}
+        </set>
+    </update>
+</mapper>
