@@ -29,7 +29,7 @@ public class ImportBeanDefinitionRegistrarTest implements ImportBeanDefinitionRe
      */
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
-        ClassPathBeanDefinitionScanner classPathBeanDefinitionScanner = new ClassPathBeanDefinitionScanner(registry);
+        ClassPathBeanDefinitionScanner classPathBeanDefinitionScanner = new ClassPathBeanDefinitionScanner(registry,false);
         classPathBeanDefinitionScanner.scan("com.example.springbatch.bean");
         //指定bean定义信息，类型，作业域等
         RootBeanDefinition rootBeanDefinition=new RootBeanDefinition(Red.class);
